@@ -1,0 +1,866 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="10dp"
+     >
+     
+    
+   <LinearLayout 
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:orientation="vertical"
+       >
+       
+       <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="#3366CC"
+        android:textSize="18sp"
+        android:text="数据显示："/>
+       
+    <!-- *********************************** -->  
+    
+    <LinearLayout 
+         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+         
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务器:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_servers_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="未连接服务器"
+            />
+        </LinearLayout>
+        
+        
+        
+         
+    </LinearLayout>
+    <!-- *********************************** -->
+    
+    
+    
+    <!-- ****************************************** -->
+    <LinearLayout 
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="PM2.5:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_pm2.5_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="烟雾:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_yanwu_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="可燃气体:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_keranqiti_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        
+    </LinearLayout>
+    
+    
+     <!-- ****************************************** -->
+     
+     <LinearLayout 
+         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        
+          
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="气压Pa:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_pa_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="101.0k"
+            />
+        </LinearLayout>
+        
+         
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室内温度:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_shiwen_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+        
+       
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="室外温度:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_shiwaiwen_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        
+    </LinearLayout>
+    <!-- ******************************************** -->
+    
+    <LinearLayout 
+         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        
+          
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="空调温度:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_airwendu_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+         
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="温度容差:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_rongcha_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+        
+       
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="温度阈值:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_yuzhi_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+              
+    </LinearLayout>
+    
+    
+    <!-- ********************************************* -->
+    
+     <LinearLayout 
+         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电灯亮度:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_lamp_light_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电灯色温:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_lampsewen_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="0.0"
+            />
+        </LinearLayout>
+        
+        
+    
+    </LinearLayout>
+    
+     
+     
+     <!-- ********************************************* -->
+     
+     
+     <LinearLayout 
+         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="窗户:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_window_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="关"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="电灯:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_light_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="关"
+            />
+        </LinearLayout>
+        
+        
+    
+    </LinearLayout>
+    
+     
+      <!-- ****************************************** -->
+      
+      
+      <LinearLayout 
+         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="空调:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_air_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="关"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="净化器:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_clean_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="关"
+            />
+        </LinearLayout>
+        
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="抽风机:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/id_exh_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="关"
+            />
+        </LinearLayout>
+          
+    </LinearLayout>
+    
+  <!-- ****************************************** -->
+  
+  
+    
+  
+  <!-- ****************************************** -->
+  
+  
+  <LinearLayout 
+      android:layout_marginTop="10dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <TextView 
+          android:gravity="center_horizontal"
+          android:textColor="#3366CC"
+          android:textSize="18sp"
+          android:layout_weight="1"
+          android:text="自动"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"/>
+     <TextView
+         android:gravity="center_horizontal"
+         android:textSize="18sp"
+         android:textColor="#3366CC" 
+         android:layout_weight="1"
+          android:text="手动"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"/>
+     
+     
+     
+  </LinearLayout>
+  
+  <!-- ****************************************** -->
+  
+  <LinearLayout 
+      android:layout_marginTop="20dp"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal"
+          android:gravity="center_vertical">
+         
+         <LinearLayout
+             android:gravity="center_vertical" 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             
+             <TextView 
+                 android:text="空调    "
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             
+             <ImageView
+                 android:layout_marginLeft="34dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/manual_air_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+             
+             
+              <ImageView
+                 
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/auto_air_state"
+                 android:src="@drawable/off1"/>
+                
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  
+  
+  <!-- ************************************ -->
+  
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          android:gravity="center_vertical"
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout
+             android:gravity="center_vertical" 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="净化器"
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+              <ImageView
+                 android:layout_marginLeft="33dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/manual_clean_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+              <ImageView
+                 
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/auto_clean_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  
+  <!-- *************************************** -->
+  
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="抽风机"
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ImageView
+                 android:layout_marginLeft="33dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/manual_exh_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+            <ImageView
+                 
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/auto_exh_state"
+                 android:src="@drawable/off1"/>
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  
+  <!-- ******************************** -->
+  
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="窗户    "
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ImageView
+                 android:layout_marginLeft="33dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/manual_window_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+             <ImageView
+                 
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/auto_window_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  
+  <!-- ********************************* -->
+  
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="电灯    "
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ImageView
+                 android:layout_marginLeft="33dp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/manual_light_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+             <ImageView
+                
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/auto_light_state"
+                 android:src="@drawable/off1"/>
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  <!-- ******************************* -->
+  
+  
+  
+
+ </LinearLayout>
+ 
+   
+   
+   <LinearLayout 
+       android:layout_alignParentBottom="true"
+       android:gravity="center"
+       
+       android:layout_width="match_parent"
+       android:layout_height="50dp"
+       android:orientation="horizontal">
+       
+       <Button 
+           android:textColor="#3366CC"
+           android:textSize="14sp"
+          
+           android:id="@+id/id_settings_btn"
+           android:layout_width="wrap_content"
+           android:layout_height="match_parent"
+           android:text="设置"
+           />
+   </LinearLayout>
+    
+    
+ 
+</RelativeLayout>

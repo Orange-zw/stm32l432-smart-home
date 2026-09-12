@@ -1,0 +1,51 @@
+# ---------- Keil MDK 构建产物 ----------
+OBJ/
+Objects/
+Listings/
+DebugConfig/
+*.hex
+*.axf
+*.bin
+*.elf
+*.map
+*.htm
+*.lnp
+*.bak
+*.dep
+*.crf
+*.o
+*.d
+*.lst
+*.i
+*.sct
+*.__i
+JLinkLog.txt
+JLinkSettings.ini
+*.uvguix.*
+*.scvd
+*.dbgconf.bak
+
+# ---------- 大型厂商文档（无需入库） ----------
+*.chm
+*.pdf
+
+# ---------- Android 构建产物 ----------
+bin/
+gen/
+*.apk
+.gradle/
+build/
+local.properties
+*.class
+
+# ---------- 压缩包 ----------
+*.zip
+*.rar
+*.7z
+
+# ---------- 系统与编辑器 ----------
+Thumbs.db
+Desktop.ini
+.DS_Store
+.vscode/
+.idea/

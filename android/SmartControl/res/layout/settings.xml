@@ -1,0 +1,678 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    android:padding="10dp">
+    
+    
+    
+    <LinearLayout 
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+    
+    <!-- ********************************************** -->
+   
+	<LinearLayout 
+         android:layout_marginTop="5dp"
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        >
+        
+        
+        
+        
+        
+        <LinearLayout 
+            android:layout_height="wrap_content"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            
+            >
+        <TextView 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="服务器:"
+            />
+        
+         <TextView
+            android:layout_marginLeft="5dp"
+            android:id="@+id/setting_server_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#3366CC"
+            android:text="未连接服务器"
+            />
+        </LinearLayout>
+        
+        
+        
+         
+    </LinearLayout>
+    
+    
+        
+        
+        
+        
+       <!-- *********************************** -->
+       
+       
+       
+      
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+        
+        <!-- ************************************************ -->
+        
+        
+        <LinearLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                
+                android:layout_weight="1" 
+                android:text="温度:"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                />
+            
+            <LinearLayout 
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3">
+                
+                <LinearLayout 
+		        android:id="@+id/wendu_linearLayout"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">
+        
+    			</LinearLayout>
+                
+                
+            </LinearLayout>
+            
+            
+            
+        </LinearLayout>
+        
+        
+        
+        <LinearLayout 
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content">
+            
+        </LinearLayout>
+        
+        <!-- *********************************************** -->
+        
+        </LinearLayout>
+        
+        <!-- ************************************************ -->
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+        <!-- *********************************************** -->
+        
+        
+        <LinearLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                
+                android:layout_weight="1" 
+                android:text="阈值:"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                />
+            
+            <LinearLayout 
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3">
+                
+                <LinearLayout 
+		        android:id="@+id/wenduyuzhi_linearLayout"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">
+        
+    			</LinearLayout>
+                
+                
+            </LinearLayout>
+            
+            
+            
+        </LinearLayout>
+        
+        <!-- *************************************** -->
+        
+        
+        <LinearLayout
+            android:layout_weight="1" 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                
+                android:layout_weight="1" 
+                android:text="容差:"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                />
+            
+            <LinearLayout 
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3">
+                
+                <LinearLayout 
+		        android:id="@+id/rongcha_linearLayout"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">
+        
+    			</LinearLayout>
+                
+                
+            </LinearLayout>
+            
+            
+            
+        </LinearLayout>
+        
+        
+        <!-- ***************************************** -->
+        </LinearLayout>
+        
+        
+        
+        
+        <!-- *********************************** -->
+        
+        <LinearLayout 
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            >
+        
+        
+        <!-- ********************************************* -->
+        <LinearLayout
+            android:layout_weight="1" 
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                
+                android:layout_weight="1" 
+                android:text="亮度:"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                />
+            
+            <LinearLayout 
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3">
+                
+                <LinearLayout 
+		        android:id="@+id/light_linearLayout"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">
+        
+    			</LinearLayout>
+                
+                
+            </LinearLayout>
+            
+            
+            
+        </LinearLayout>
+        
+        <!-- ***************************************** -->
+        
+        <!-- *************************************** -->
+        <LinearLayout 
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical">
+            <TextView
+                
+                android:layout_weight="1" 
+                android:text="色温:"
+                android:textSize="14sp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                />
+            
+            <LinearLayout 
+                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_weight="3">
+                
+                <LinearLayout 
+		        android:id="@+id/sewen_linearLayout"
+		        android:layout_width="match_parent"
+		        android:layout_height="wrap_content"
+		        android:orientation="vertical">
+        
+    			</LinearLayout>
+                
+                
+            </LinearLayout>
+            
+            
+            
+        </LinearLayout>
+        <!-- ****************************************** -->
+        
+        </LinearLayout>
+        <!-- ******************************************* -->
+        
+        
+         <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      <TextView 
+          android:gravity="center_horizontal"
+          android:textColor="#3366CC"
+          android:textSize="18sp"
+          android:layout_weight="1"
+          android:text="手动"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"/>
+     <TextView
+         android:gravity="center_horizontal"
+         android:textSize="18sp"
+         android:textColor="#3366CC" 
+         android:layout_weight="1"
+          android:text="自动"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"/>
+     
+     
+     
+  </LinearLayout>
+  <!-- ********************************** -->
+  
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="空调    "
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ToggleButton
+                 android:layout_marginLeft="25dp"
+		        android:id="@+id/manual_air_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+             <ToggleButton
+                 
+		        android:id="@+id/auto_air_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  <!-- *********************************** -->
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="净化器"
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ToggleButton
+                 android:layout_marginLeft="25dp"
+		        android:id="@+id/manual_clean_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+             <ToggleButton
+                 
+		        android:id="@+id/auto_clean_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  <!-- **************************************** -->
+  
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="抽风机"
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ToggleButton
+                 android:layout_marginLeft="25dp"
+		        android:id="@+id/manual_exh_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+             <ToggleButton
+                 
+		        android:id="@+id/auto_exh_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  <!-- ***************************** -->
+  
+  
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="窗户    "
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ToggleButton
+                 android:layout_marginLeft="25dp"
+		        android:id="@+id/manual_window_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+             <ToggleButton
+                 
+		        android:id="@+id/auto_window_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  
+  
+  <!-- ***************************** -->
+  <LinearLayout 
+      
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal">
+      
+      
+      <LinearLayout 
+          
+          
+          android:layout_height="wrap_content"
+          android:layout_width="match_parent"
+          android:orientation="horizontal">
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp">
+             <TextView 
+                 android:text="电灯    "
+                 android:textSize="14sp"
+                 android:layout_width="wrap_content"
+                 android:layout_height="wrap_content"/>
+             <ToggleButton
+                 android:layout_marginLeft="25dp"
+		        android:id="@+id/manual_liht_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+         
+         
+         <LinearLayout 
+             android:layout_weight="1"
+             android:layout_height="wrap_content"
+             android:layout_width="0dp"
+             android:gravity="center">
+            
+             <ToggleButton
+                 
+		        android:id="@+id/auto_light_switch_btn_setting"
+		        android:layout_width="40dp"
+		        android:layout_height="40dp"
+		        android:layout_alignParentRight="true"
+		        android:background="@drawable/toggle_btn_change"
+		        android:checked="false"
+		        android:text=""
+		        android:textOff=""
+		        android:textOn="" />
+             
+         </LinearLayout>
+            
+      </LinearLayout>
+        
+  </LinearLayout>
+  <!-- ********************************* -->
+    </LinearLayout>
+    
+    <Button 
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true" 
+        android:text="返回"
+        android:textSize="14sp"
+        android:layout_width="70dp"
+        android:textColor="#3366CC"
+        android:layout_height="wrap_content"
+        android:id="@+id/settings_back_btn"/>
+    
+    
+    
+    
+    
+    <Button
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true" 
+        android:text="保存"
+         android:textSize="14sp"
+        android:layout_width="70dp"
+        android:textColor="#3366CC"
+        android:layout_height="wrap_content"
+        android:id="@+id/save_settings_btn"
+        />
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+
+</RelativeLayout>
