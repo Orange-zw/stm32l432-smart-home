@@ -1,0 +1,628 @@
+#include "max30102.h"
+#include "xiic.h"
+#include "delay.h"
+#include "oled.h"
+#include "ssd1306.h"
+
+// PPG波形显示数据数组定义
+const unsigned char PPG_wave_fig[34]= //0-16
+{
+	0x00,0x00,
+	0x00,0x80,//0000 0000 1000 0000
+	0x00,0xC0,
+	0x00,0xE0,
+	0x00,0xF0,
+	0x00,0xF8,
+	0x00,0xFC,
+	0x00,0xFE,
+	0x00,0xFF,
+	0x80,0xFF,//1000 0000 1111 1111
+	0xC0,0xFF,
+	0xE0,0xFF,
+	0xF0,0xFF,
+	0xF8,0xFF,
+	0xFC,0xFF,
+	0xFE,0xFF,
+	0xFF,0xFF,
+};
+
+const unsigned char  F16X32[]={//16*32
+0x00,0x00,0xF0,0xF8,0xFC,0x3C,0x1C,0x1C,0x1C,0x1C,0x3C,0xFC,0xF8,0xF0,0x00,0x00,
+0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,
+0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,
+0x00,0x00,0x0F,0x1F,0x3F,0x3C,0x38,0x38,0x38,0x38,0x3C,0x3F,0x1F,0x0F,0x00,0x00,/*"0",0*/
+
+
+0x00,0x00,0x00,0x00,0xC0,0xE0,0xF0,0xF8,0xFC,0xFC,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x3F,0x3F,0x00,0x00,0x00,0x00,0x00,0x00,/*"1",1*/
+
+
+0x00,0x00,0xF0,0xF8,0xFC,0x3C,0x1C,0x1C,0x1C,0x1C,0x3C,0xFC,0xF8,0xF0,0x00,0x00,
+0x00,0x00,0x07,0x07,0x07,0x00,0x00,0x00,0x80,0xC0,0xE0,0xFF,0x7F,0x3F,0x00,0x00,
+0x00,0x00,0xE0,0xF0,0xF8,0x3C,0x1E,0x0F,0x07,0x03,0x01,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x3F,0x3F,0x3F,0x38,0x38,0x38,0x38,0x38,0x38,0x3C,0x3C,0x3C,0x00,0x00,/*"2",2*/
+
+
+0x00,0x00,0xF0,0xF8,0xFC,0x3C,0x1C,0x1C,0x1C,0x1C,0x3C,0xFC,0xF8,0xF0,0x00,0x00,
+0x00,0x00,0x07,0x07,0xC7,0xC0,0xC0,0xC0,0xC0,0xC0,0xE0,0xFF,0x7F,0x3F,0x00,0x00,
+0x00,0x00,0xE0,0xE0,0xE1,0x01,0x01,0x01,0x01,0x01,0x03,0xFF,0xFF,0xFE,0x00,0x00,
+0x00,0x00,0x0F,0x1F,0x3F,0x3C,0x38,0x38,0x38,0x38,0x3C,0x3F,0x1F,0x0F,0x00,0x00,/*"3",3*/
+
+0x00,0x00,0x00,0x00,0x00,0x00,0x80,0xE0,0xF0,0x78,0xFC,0xFC,0xFC,0x00,0x00,0x00,
+0x00,0x00,0x80,0xE0,0xF8,0x7E,0x1F,0x07,0x01,0x00,0xFF,0xFF,0xFF,0x00,0x00,0x00,
+0x00,0x00,0x3F,0x3F,0x3F,0x38,0x38,0x38,0x38,0x38,0xFF,0xFF,0xFF,0x38,0x38,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x3F,0x3F,0x3F,0x00,0x00,0x00,/*"4",4*/
+
+
+0x00,0x00,0xFC,0xFC,0xFC,0x1C,0x1C,0x1C,0x1C,0x1C,0x1C,0x1C,0x1C,0x1C,0x00,0x00,
+0x00,0x00,0xFF,0xFF,0xFF,0xF0,0x78,0x38,0x38,0x38,0x78,0xF8,0xF0,0xE0,0x00,0x00,
+0x00,0x00,0xF0,0xF0,0xF0,0x00,0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,
+0x00,0x00,0x0F,0x1F,0x3F,0x3C,0x38,0x38,0x38,0x38,0x3C,0x3F,0x1F,0x0F,0x00,0x00,/*"5",5*/
+
+0x00,0x00,0xF0,0xF8,0xFC,0x3C,0x1C,0x1C,0x1C,0x1C,0x3C,0xFC,0xF8,0xF0,0x00,0x00,
+0x00,0x00,0xFF,0xFF,0xFF,0xC0,0xE0,0xE0,0xE0,0xE0,0xE0,0xE1,0xC1,0x81,0x00,0x00,
+0x00,0x00,0xFF,0xFF,0xFF,0x01,0x00,0x00,0x00,0x00,0x01,0xFF,0xFF,0xFF,0x00,0x00,
+0x00,0x00,0x0F,0x1F,0x3F,0x3C,0x38,0x38,0x38,0x38,0x3C,0x3F,0x1F,0x0F,0x00,0x00,/*"6",6*/
+
+0x00,0x00,0x3C,0x3C,0x3C,0x1C,0x1C,0x1C,0x1C,0x9C,0xFC,0xFC,0x7C,0x1C,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x80,0xE0,0xF8,0x7E,0x1F,0x07,0x01,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0xFF,0xFF,0xFF,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x3F,0x3F,0x3F,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,/*"7",7*/
+
+0x00,0x00,0xF0,0xF8,0xFC,0x3C,0x1C,0x1C,0x1C,0x1C,0x3C,0xFC,0xF8,0xF0,0x00,0x00,
+0x00,0x00,0x3F,0x7F,0xFF,0xE0,0xC0,0xC0,0xC0,0xC0,0xE0,0xFF,0x7F,0x3F,0x00,0x00,
+0x00,0x00,0xFE,0xFF,0xFF,0x03,0x01,0x01,0x01,0x01,0x03,0xFF,0xFF,0xFE,0x00,0x00,
+0x00,0x00,0x0F,0x1F,0x3F,0x3C,0x38,0x38,0x38,0x38,0x3C,0x3F,0x1F,0x0F,0x00,0x00,/*"8",8*/
+
+0x00,0x00,0xF0,0xF8,0xFC,0x3C,0x1C,0x1C,0x1C,0x1C,0x3C,0xFC,0xF8,0xF0,0x00,0x00,
+0x00,0x00,0xFF,0xFF,0xFF,0xC0,0x80,0x80,0x80,0x80,0xC0,0xFF,0xFF,0xFF,0x00,0x00,
+0x00,0x00,0xC0,0xC1,0xC3,0x03,0x03,0x03,0x03,0x03,0x01,0xFF,0xFF,0xFF,0x00,0x00,
+0x00,0x00,0x0F,0x1F,0x3F,0x3C,0x38,0x38,0x38,0x38,0x3C,0x3F,0x1F,0x0F,0x00,0x00,/*"9",9*/
+
+0x00,0x00,0x00,0x00,0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x0F,0x1F,0x1F,0x1F,0x1F,0x0F,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0xF0,0xF8,0xF8,0xF8,0xF8,0xF0,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x01,0x01,0x01,0x01,0x00,0x00,0x00,0x00,0x00,0x00,/*":",10*/
+
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,/*"黑屏 ",11*/
+};
+
+
+u8 max30102_Bus_Write(u8 Register_Address, u8 Word_Data)
+{
+
+	/* 采用串行EEPROM随即读取指令序列，连续读取若干字节 */
+
+	/* 第1步：发起I2C总线启动信号 */
+	IIC_Start();
+
+	/* 第2步：发起控制字节，高7bit是地址，bit0是读写控制位，0表示写，1表示读 */
+	IIC_Send_Byte(max30102_WR_address | I2C_WR);	/* 此处是写指令 */
+
+	/* 第3步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 第4步：发送字节地址 */
+	IIC_Send_Byte(Register_Address);
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+	
+	/* 第5步：开始写入数据 */
+	IIC_Send_Byte(Word_Data);
+
+	/* 第6步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+	return 1;	/* 执行成功 */
+
+cmd_fail: /* 命令执行失败后，切记发送停止信号，避免影响I2C总线上其他设备 */
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+	return 0;
+}
+
+
+
+u8 max30102_Bus_Read(u8 Register_Address)
+{
+	u8  data;
+
+
+	/* 第1步：发起I2C总线启动信号 */
+	IIC_Start();
+
+	/* 第2步：发起控制字节，高7bit是地址，bit0是读写控制位，0表示写，1表示读 */
+	IIC_Send_Byte(max30102_WR_address | I2C_WR);	/* 此处是写指令 */
+
+	/* 第3步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 第4步：发送字节地址， */
+	IIC_Send_Byte((uint8_t)Register_Address);
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+	
+
+	/* 第6步：重新启动I2C总线。下面开始读取数据 */
+	IIC_Start();
+
+	/* 第7步：发起控制字节，高7bit是地址，bit0是读写控制位，0表示写，1表示读 */
+	IIC_Send_Byte(max30102_WR_address | I2C_RD);	/* 此处是读指令 */
+
+	/* 第8步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 第9步：读取数据 */
+	{
+		data = IIC_Read_Byte(0);	/* 读1个字节 */
+
+		IIC_NAck();	/* 最后1个字节读完后，CPU产生NACK信号(驱动SDA = 1) */
+	}
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+	return data;	/* 执行成功 返回data值 */
+
+cmd_fail: /* 命令执行失败后，切记发送停止信号，避免影响I2C总线上其他设备 */
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+	return 0;
+}
+
+
+void max30102_FIFO_ReadWords(u8 Register_Address,u16 Word_Data[][2],u8 count)
+{
+	u8 i=0;
+	u8 no = count;
+	u8 data1, data2;
+	/* 第1步：发起I2C总线启动信号 */
+	IIC_Start();
+
+	/* 第2步：发起控制字节，高7bit是地址，bit0是读写控制位，0表示写，1表示读 */
+	IIC_Send_Byte(max30102_WR_address | I2C_WR);	/* 此处是写指令 */
+
+	/* 第3步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 第4步：发送字节地址， */
+	IIC_Send_Byte((uint8_t)Register_Address);
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+	
+
+	/* 第6步：重新启动I2C总线。下面开始读取数据 */
+	IIC_Start();
+
+	/* 第7步：发起控制字节，高7bit是地址，bit0是读写控制位，0表示写，1表示读 */
+	IIC_Send_Byte(max30102_WR_address | I2C_RD);	/* 此处是读指令 */
+
+	/* 第8步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 第9步：读取数据 */
+	while (no)
+	{
+		data1 = IIC_Read_Byte(0);	
+		IIC_Ack();
+		data2 = IIC_Read_Byte(0);
+		IIC_Ack();
+		Word_Data[i][0] = (((u16)data1 << 8) | data2);  //
+
+		
+		data1 = IIC_Read_Byte(0);	
+		IIC_Ack();
+		data2 = IIC_Read_Byte(0);
+		if(1==no)
+			IIC_NAck();	/* 最后1个字节读完后，CPU产生NACK信号(驱动SDA = 1) */
+		else
+			IIC_Ack();
+		Word_Data[i][1] = (((u16)data1 << 8) | data2); 
+
+		no--;	
+		i++;
+	}
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+
+cmd_fail: /* 命令执行失败后，切记发送停止信号，避免影响I2C总线上其他设备 */
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+}
+
+void max30102_FIFO_ReadBytes(u8 Register_Address,u8* Data)
+{	
+	max30102_Bus_Read(REG_INTR_STATUS_1);
+	max30102_Bus_Read(REG_INTR_STATUS_2);
+	
+	/* 第1步：发起I2C总线启动信号 */
+	IIC_Start();
+
+	/* 第2步：发起控制字节，高7bit是地址，bit0是读写控制位，0表示写，1表示读 */
+	IIC_Send_Byte(max30102_WR_address | I2C_WR);	/* 此处是写指令 */
+
+	/* 第3步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 第4步：发送字节地址， */
+	IIC_Send_Byte((uint8_t)Register_Address);
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+	
+
+	/* 第6步：重新启动I2C总线。下面开始读取数据 */
+	IIC_Start();
+
+	/* 第7步：发起控制字节，高7bit是地址，bit0是读写控制位，0表示写，1表示读 */
+	IIC_Send_Byte(max30102_WR_address | I2C_RD);	/* 此处是读指令 */
+
+	/* 第8步：发送ACK */
+	if (IIC_Wait_Ack() != 0)
+	{
+		goto cmd_fail;	/* EEPROM器件无应答 */
+	}
+
+	/* 第9步：读取数据 */
+	Data[0] = IIC_Read_Byte(1);	
+	Data[1] = IIC_Read_Byte(1);	
+	Data[2] = IIC_Read_Byte(1);	
+	Data[3] = IIC_Read_Byte(1);
+	Data[4] = IIC_Read_Byte(1);	
+	Data[5] = IIC_Read_Byte(0);
+	/* 最后1个字节读完后，CPU产生NACK信号(驱动SDA = 1) */
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+
+cmd_fail: /* 命令执行失败后，切记发送停止信号，避免影响I2C总线上其他设备 */
+	/* 发送I2C总线停止信号 */
+	IIC_Stop();
+
+//	u8 i;
+//	u8 fifo_wr_ptr;
+//	u8 firo_rd_ptr;
+//	u8 number_tp_read;
+//	//Get the FIFO_WR_PTR
+//	fifo_wr_ptr = max30102_Bus_Read(REG_FIFO_WR_PTR);
+//	//Get the FIFO_RD_PTR
+//	firo_rd_ptr = max30102_Bus_Read(REG_FIFO_RD_PTR);
+//	
+//	number_tp_read = fifo_wr_ptr - firo_rd_ptr;
+//	
+//	//for(i=0;i<number_tp_read;i++){
+//	if(number_tp_read>0){
+//		IIC_ReadBytes(max30102_WR_address,REG_FIFO_DATA,Data,6);
+//	}
+	
+	//max30102_Bus_Write(REG_FIFO_RD_PTR,fifo_wr_ptr);
+}
+
+void max30102_init(void)
+{
+	GPIO_InitTypeDef GPIO_InitStructure;
+
+ 	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB,ENABLE);	
+	GPIO_InitStructure.GPIO_Pin  = GPIO_Pin_14;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IN_FLOATING;
+ 	GPIO_Init(GPIOB, &GPIO_InitStructure);
+	
+	IIC_Init();
+	
+	max30102_reset();
+	
+//	max30102_Bus_Write(REG_MODE_CONFIG, 0x0b);  //mode configuration : temp_en[3]      MODE[2:0]=010 HR only enabled    011 SP02 enabled
+//	max30102_Bus_Write(REG_INTR_STATUS_2, 0xF0); //open all of interrupt
+//	max30102_Bus_Write(REG_INTR_STATUS_1, 0x00); //all interrupt clear
+//	max30102_Bus_Write(REG_INTR_ENABLE_2, 0x02); //DIE_TEMP_RDY_EN
+//	max30102_Bus_Write(REG_TEMP_CONFIG, 0x01); //SET   TEMP_EN
+
+//	max30102_Bus_Write(REG_SPO2_CONFIG, 0x47); //SPO2_SR[4:2]=001  100 per second    LED_PW[1:0]=11  16BITS
+
+//	max30102_Bus_Write(REG_LED1_PA, 0x47); 
+//	max30102_Bus_Write(REG_LED2_PA, 0x47); 
+	
+	
+	
+	max30102_Bus_Write(REG_INTR_ENABLE_1,0xC0);	// INTR setting
+	max30102_Bus_Write(REG_INTR_ENABLE_2,0x00);
+	max30102_Bus_Write(REG_FIFO_WR_PTR,0x00);  	//FIFO_WR_PTR[4:0]
+	max30102_Bus_Write(REG_OVF_COUNTER,0x00);  	//OVF_COUNTER[4:0]
+	max30102_Bus_Write(REG_FIFO_RD_PTR,0x00);  	//FIFO_RD_PTR[4:0]
+	max30102_Bus_Write(REG_FIFO_CONFIG,0x0f);  	//sample avg = 1, fifo rollover=false, fifo almost full = 17
+	max30102_Bus_Write(REG_MODE_CONFIG,0x03);  	//0x02 for Red only, 0x03 for SpO2 mode 0x07 multimode LED
+	max30102_Bus_Write(REG_SPO2_CONFIG,0x27);  	// SPO2_ADC range = 4096nA, SPO2 sample rate (100 Hz), LED pulseWidth (400uS)  
+	max30102_Bus_Write(REG_LED1_PA,0x30);   	//Choose value for ~ 7mA for LED1
+	max30102_Bus_Write(REG_LED2_PA,0x30);   	// Choose value for ~ 7mA for LED2
+	max30102_Bus_Write(REG_PILOT_PA,0x0a);   	// Choose value for ~ 25mA for Pilot LED
+	
+//	max30102_Bus_Write(REG_PROX_INT_THRESH , 0x10);     //唤醒血氧LED的阀值									
+}
+
+void max30102_reset(void)
+{
+	max30102_Bus_Write(REG_MODE_CONFIG,0x40);
+	max30102_Bus_Write(REG_MODE_CONFIG,0x40);
+}
+
+void maxim_max30102_write_reg(uint8_t uch_addr, uint8_t uch_data)
+{
+//  char ach_i2c_data[2];
+//  ach_i2c_data[0]=uch_addr;
+//  ach_i2c_data[1]=uch_data;
+//	
+//  IIC_WriteBytes(I2C_WRITE_ADDR, ach_i2c_data, 2);
+	IIC_Write_One_Byte(I2C_WRITE_ADDR,uch_addr,uch_data);
+}
+
+void maxim_max30102_read_reg(uint8_t uch_addr, uint8_t *puch_data)
+{
+//  char ch_i2c_data;
+//  ch_i2c_data=uch_addr;
+//  IIC_WriteBytes(I2C_WRITE_ADDR, &ch_i2c_data, 1);
+//	
+//  i2c.read(I2C_READ_ADDR, &ch_i2c_data, 1);
+//  
+//   *puch_data=(uint8_t) ch_i2c_data;
+	IIC_Read_One_Byte(I2C_WRITE_ADDR,uch_addr,puch_data);
+}
+
+void maxim_max30102_read_fifo(uint32_t *pun_red_led, uint32_t *pun_ir_led)
+{
+	uint32_t un_temp;
+	unsigned char uch_temp;
+	unsigned char ach_i2c_data[6];
+	*pun_red_led=0;
+	*pun_ir_led=0;
+
+  
+  //read and clear status register
+  maxim_max30102_read_reg(REG_INTR_STATUS_1, &uch_temp);
+  maxim_max30102_read_reg(REG_INTR_STATUS_2, &uch_temp);
+  
+  IIC_ReadBytes(I2C_WRITE_ADDR,REG_FIFO_DATA,(u8 *)ach_i2c_data,6);
+  
+  un_temp=(uint32_t) ach_i2c_data[0];
+  un_temp<<=16;
+  *pun_red_led+=un_temp;
+  un_temp=(uint32_t) ach_i2c_data[1];
+  un_temp<<=8;
+  *pun_red_led+=un_temp;
+  un_temp=(uint32_t) ach_i2c_data[2];
+  *pun_red_led+=un_temp;
+  
+  un_temp=(uint32_t) ach_i2c_data[3];
+  un_temp<<=16;
+  *pun_ir_led+=un_temp;
+  un_temp=(uint32_t) ach_i2c_data[4];
+  un_temp<<=8;
+  *pun_ir_led+=un_temp;
+  un_temp=(uint32_t) ach_i2c_data[5];
+  *pun_ir_led+=un_temp;
+  *pun_red_led&=0x03FFFF;  //Mask MSB [23:18]
+  *pun_ir_led&=0x03FFFF;  //Mask MSB [23:18]
+}
+
+void OLED_wave(u8 Wave_sum) // 波形刷新
+{
+	static u8 i;
+	OLED_WR_Byte (0xb6,OLED_CMD);    						//设置页地址
+	OLED_WR_Byte ((i & 0x0f),OLED_CMD);      		//设置显示位置―列低地址
+	OLED_WR_Byte (((i & 0xf0) >> 4) |0x10,OLED_CMD);      	//设置显示位置―列高地址
+	OLED_WR_Byte(PPG_wave_fig[Wave_sum*2],OLED_DATA);
+
+	OLED_WR_Byte (0xb7,OLED_CMD);    						//设置页地址
+	OLED_WR_Byte ((i & 0x0f),OLED_CMD);      				//设置显示位置―列低地址
+	OLED_WR_Byte (((i & 0xf0) >> 4) |0x10,OLED_CMD);      	//设置显示位置―列高地址
+	OLED_WR_Byte(PPG_wave_fig[Wave_sum*2+1],OLED_DATA);		//显示数据,PPG_wave_fig[n]的值跟OLED寄存器配置的扫描方式相关
+	// ssd1306_set_page_data(oled_dev, 6, i, PPG_wave_fig[Wave_sum * 2]);
+	// ssd1306_set_page_data(oled_dev, 7, i, PPG_wave_fig[Wave_sum * 2 + 1]);
+
+	i++;
+	if (i > 127)
+		i = 0;
+}
+
+void OLED_ShowNum_Heart(u8 x, u8 y, u32 num, u8 len, u8 size)
+{
+	u8 headflag = 0, temp, t;
+
+	for (t = 0; t < len; t++)
+	{
+		temp = (num / OLED_Pow(10, len - t - 1)) % 10;
+		if (headflag == 0 && t < (len - 1))
+		{ // 排除掉num = 0 的时候
+			if (temp == 0)
+			{
+				if (size == 16)
+				{
+					OLED_ShowChar(x + (size / 2) * t, y, ' ', 16);
+					// ssd1306_draw_char(oled_dev, x + (size / 2) * t, y, ' ', 16, NORMAL);
+				}
+				else if (size == 32)
+				{
+					OLED_P32x64Str(x + (size / 2) * t, y, 11);
+				}
+				continue;
+			}
+			else
+			{
+				headflag = 1;
+			}
+		}
+		if (size == 16)
+		{
+			OLED_ShowChar(x + (size / 2) * t, y, temp + '0', 16);
+			// ssd1306_draw_char(oled_dev, x + (size / 2) * t, y, temp + '0', 16, NORMAL);
+		}
+		else if (size == 32)
+		{
+			OLED_P32x64Str(x + (size / 2) * t, y, temp);
+		}
+	}
+}
+
+void OLED_P32x64Str(u8 x, u8 y, u8 dat)
+{
+	unsigned char i = 0;
+	unsigned int adder = 64 * dat;
+
+	if (x > 128)
+	{
+		x = 0;
+		y++;
+	}
+	OLED_Set_Pos(x, y);
+	for (i = 0; i < 16; i++)
+	{
+		OLED_WR_Byte(F16X32[adder], OLED_DATA);
+		adder += 1;
+	}
+
+	OLED_Set_Pos(x, y + 1);
+	for (i = 0; i < 16; i++)
+	{
+		OLED_WR_Byte(F16X32[adder], OLED_DATA);
+		adder += 1;
+	}
+
+	OLED_Set_Pos(x, y + 2);
+	for (i = 0; i < 16; i++)
+	{
+		OLED_WR_Byte(F16X32[adder], OLED_DATA);
+		adder += 1;
+	}
+
+	OLED_Set_Pos(x, y + 3);
+	for (i = 0; i < 16; i++)
+	{
+		OLED_WR_Byte(F16X32[adder], OLED_DATA);
+		adder += 1;
+	}
+	// x+=1;
+}
+
+/**
+ * @brief 显示16x32像素的大数字(使用ssd1306驱动)
+ * @param dev ssd1306设备句柄
+ * @param x X坐标(0-127)
+ * @param y 页地址(0-7),每页8像素高
+ * @param dat 要显示的数字(0-9)或冒号(10)或空白(11)
+ */
+// void OLED_P32x64Str( u8 x, u8 y, u8 dat)
+// {
+//     // unsigned char i = 0;
+//     // unsigned int adder = 64 * dat;  // 每个字符占64字节(16列 * 4页)
+
+//     // // 边界检查
+//     // if (x > 128)
+//     // {
+//     //     x = 0;
+//     //     y++;
+//     // }
+    
+//     // // 检查页地址是否越界
+//     // if (y > 4) return;  // 4页之后会超出屏幕(每个字符占4页)
+
+//     // // 第1页 (y + 0)
+//     // for (i = 0; i < 16; i++)
+//     // {
+//     //     ssd1306_set_page_data(oled_dev, y, x + i, F16X32[adder]);
+//     //     adder++;
+//     // }
+
+//     // // 第2页 (y + 1)
+//     // for (i = 0; i < 16; i++)
+//     // {
+//     //     ssd1306_set_page_data(oled_dev, y + 1, x + i, F16X32[adder]);
+//     //     adder++;
+//     // }
+
+//     // // 第3页 (y + 2)
+//     // for (i = 0; i < 16; i++)
+//     // {
+//     //     ssd1306_set_page_data(oled_dev, y + 2, x + i, F16X32[adder]);
+//     //     adder++;
+//     // }
+
+//     // // 第4页 (y + 3)
+//     // for (i = 0; i < 16; i++)
+//     // {
+//     //     ssd1306_set_page_data(oled_dev, y + 3, x + i, F16X32[adder]);
+//     //     adder++;
+//     // }
+    
+// 	// ssd1306_refresh_gram(oled_dev);  // 刷新显示
+//     // 注意: 这里不调用 ssd1306_refresh_gram()
+//     // 应该在显示完所有内容后统一刷新
+// }
+
+//m^n
+u32 OLED_Pow(u8 m,u8 n)
+{
+	u32 result=1;
+	while(n--){
+	  result*=m;
+	}
+	return result;
+}
+
+//显示2个数字
+//x,y :起点坐标	 
+//len :数字的位数
+//size:字体大小
+//mode:模式	0,填充模式;1,叠加模式
+//num:数值(0~4294967295);	 		  
+void OLED_ShowNumSize(u8 x,u8 y,u32 num,u8 len,u8 size2)
+{         	
+	u8 t,temp;
+	u8 enshow=0;						   
+	for(t=0;t<len;t++)
+	{
+		temp=(num/oled_pow(10,len-t-1))%10;
+		if(enshow==0&&t<(len-1))
+		{
+			if(temp==0)
+			{
+				OLED_ShowChar(x+(size2/2)*t,y,' ',size2);
+				// ssd1306_draw_char(oled_dev, x + (size2 / 2) * t, y, ' ', size2, NORMAL);
+				continue;
+			}else enshow=1; 
+		 	 
+		}
+	 	OLED_ShowChar(x+(size2/2)*t,y,temp+'0',size2); 
+		// ssd1306_draw_char(oled_dev, x + (size2 / 2) * t, y, temp + '0', size2, NORMAL);
+	}
+}

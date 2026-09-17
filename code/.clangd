@@ -1,0 +1,38 @@
+# CompileFlags:
+#   Add:
+#     - "-I${workspaceFolder}/SYSTEM/delay"
+#     - "-I${workspaceFolder}/SYSTEM/sys"
+#     - "-I${workspaceFolder}/CORE"
+#     - "-I${workspaceFolder}/STM32F10x_FWLib/inc"
+#     - "-I${workspaceFolder}/HARDWARE/**"
+#     - "-I${workspaceFolder}/Algorithm/**"
+#     - "-I${workspaceFolder}/Driver/**"
+#     - "-I${workspaceFolder}/DEV/**"
+#     - "-ID:/APP/Keil5/keil/ARM/ARMCC/include"
+#     - "-ID:/APP/Keil5/keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"
+#     - "-DUSE_STDPERIPH_DRIVER"
+#     - "-D__CC_ARM"
+#     - "-D__arm__"
+#     - "-Wno-unknown-pragmas"
+#     - "-Wno-unused-parameter"
+#     - "-Wno-missing-field-initializers"
+#   CompilationDatabase: USER/
+CompileFlags:
+  Add:
+    - "-I${workspaceFolder}/SYSTEM/delay"
+    - "-I${workspaceFolder}/SYSTEM/sys"
+    - "-I${workspaceFolder}/CORE"
+    - "-I${workspaceFolder}/STM32F10x_FWLib/inc"
+    - "-I${workspaceFolder}/HARDWARE/**"
+    - "-I${workspaceFolder}/Algorithm/**"
+    - "-I${workspaceFolder}/Driver/**"
+    - "-I${workspaceFolder}/DEV/**"
+    - "-ID:/APP/Keil5/keil/ARM/ARMCLANG/include" # ? 改为ARMCLANG路径
+    - "-ID:/APP/Keil5/keil/ARM/Packs/ARM/CMSIS/5.9.0/CMSIS/Core/Include"
+    - "-DUSE_STDPERIPH_DRIVER"
+    - "-D__UVISION_VERSION=\"524\""
+    - "-DSTM32F10X_MD" 
+    - "-Wno-unknown-pragmas"
+    - "-Wno-unused-parameter"
+    - "-Wno-missing-field-initializers"
+  CompilationDatabase: USER/

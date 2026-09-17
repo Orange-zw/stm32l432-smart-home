@@ -1,0 +1,34 @@
+# ===============================================================
+# 换行符策略：不做任何 EOL 转换
+# ===============================================================
+# 本工程源码为 LF、文档为 CRLF，两者都要原样保留。
+# 关键原因：Keil 工程的源码含 GB2312 中文字符串字面量与中文字库，
+# 任何自动转换都可能破坏字节内容，导致 OLED 中文显示乱码。
+* -text
+
+# ===============================================================
+# GB2312 编码文件（必须原样保留，勿转码为 UTF-8）
+# ===============================================================
+# 这些文件与 DEV/OLED_new 里的 GB2312 点阵字库配套使用。
+# Keil 工程选项为 --no-multibyte-chars，源码须以 GB2312 保存。
+code/USER/main.c                    binary
+code/HARDWARE/ESP8266/esp8266.h     binary
+code/HARDWARE/OLED/oledfont.h       binary
+code/HARDWARE/HX1838/README.md      binary
+code/DEV/OLED_new/ssd1306_fonts.c   binary
+code/Driver/IO/AI.c                 binary
+code/Driver/ONE_WIRE/onewire_bus.c  binary
+code/Third_Party/FatFs/src/st_readme.txt binary
+
+# ===============================================================
+# 二进制资源
+# ===============================================================
+*.bin   binary
+*.apk   binary
+*.lib   binary
+*.a     binary
+*.pdf   binary
+*.zip   binary
+*.jpg   binary
+*.png   binary
+*.hex   binary

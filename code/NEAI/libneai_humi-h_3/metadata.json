@@ -1,0 +1,98 @@
+{
+    "algorithm_type": "on_board_training",
+    "commit": "bb711f54",
+    "compilation_date": "2026-01-22T09:45:23.183583",
+    "compilation_flags": {
+        "float_abi": "soft",
+        "fshort_enums": true,
+        "short_wchar": true
+    },
+    "compilation_str": "{'compilation_dict':{'request_type':'library','api':{'env':'PROD','version':'v3'},'version':{'web_api':{'env':'PROD','version':'v3'},'local_api':{'version':'2025.04.04.1','platform':'win64'},'studio':'5.0.2'},'compilation_flags':{'float_abi':'soft','short_wchar':true,'fshort_enums':true,'use_knowledge':true},'mcu':'cortex-m3_stmicroelectronics_stm32f1-series','sensor':'multiGeneric','request_origin':'manual','algorithm_type':'on_board_training','lib_version':'v2_bb711f5','info':{'progression':{'evals_done':14978,'optimization_progress':0.07489,'elapsed_time':160,'cpu_info':{'cpu_nb_cores':16,'cpu_nb_cores_for_optimization':12},'state':'paused'},'max_ram':3000,'max_flash':5000,'optimization_global_id':'38ab24eabe9ce97a46839dd300842cca','version':{'local_api':'2025.04.04.1','studio':'5.0.2'},'creation_date':'2026-01-22T09:32:03+00:00'},'class_names':'nominal,anomaly','results':[{'result_id':35,'combination':[0,0,[2,0,14,13,5,9,3,15,12,19,18,16,8,7,25,26,10,6,21,4,23,24,20,22,1,11,17],27,0,56,10,5,0,4,2,1,1.25,0.0,0.0,1000000.0,0.66,0,0,0,0,0.14,0.87],'model':5,'performance':{'performance':{'score':0.9483,'precision':0.9645,'precision_confidence_interval':[0.9416,0.9873]},'memory_usage':{'estimated_ram':104,'estimated_flash':4181,'estimated_flash_knowledge':132}},'learning_min_lines':20,'knowledge_dat':'eNpjYJjiZOj51a45iMmegaEBiB0cGBgW2NubxtkXZwjaObu8cUytmOFQt_GNIwPDDIdHVW8cTd9Md_jU_dZx-6KpDkGhbx3L2KcC9UxwAupzgJihAFSLDhKA8g0OcK5KiSeU5QAAX6wgZg=='}],'data':{'nb_cols':10,'nb_lines':[[{'file_type':'nominal','nb_lines':148},{'file_type':'anomaly','nb_lines':128}]]},'only_emulators':false,'user_suffix':'humiad','lock_type':100},'sign':58234,'license_key':'***'}",
+    "compile_emulators": true,
+    "compile_library": true,
+    "data": {
+        "nb_cols": 10,
+        "nb_lines": [
+            [
+                {
+                    "file_type": "nominal",
+                    "nb_lines": 148
+                },
+                {
+                    "file_type": "anomaly",
+                    "nb_lines": 128
+                }
+            ]
+        ]
+    },
+    "gcc_version": "arm-none-eabi-gcc (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7)) 13.2.1 20231009",
+    "learning_min_lines": 20,
+    "lib_limited": false,
+    "library_id": "6971f1b4f3085b61e27a11ff",
+    "library_md5sum": "ba801b803ed5d501e589f500c65e132d",
+    "mcu": "cortex-m3_stmicroelectronics_stm32f1-series",
+    "mcu_cpn": "",
+    "mcu_display_name": "STM32F1 Series - STMicroelectronics",
+    "mcu_family": "STM32F1 Series",
+    "mcu_group": "prod",
+    "mcu_type": "cortex-m3",
+    "mcu_vendor": "STMicroelectronics",
+    "memory_usage": {
+        "flash": 3396,
+        "ram": 112
+    },
+    "optimization_info": {
+        "creation_date": "2026-01-22T09:32:03+00:00",
+        "max_flash": 5000,
+        "max_ram": 3000,
+        "optimization_global_id": "38ab24eabe9ce97a46839dd300842cca",
+        "progression": {
+            "cpu_info": {
+                "cpu_nb_cores": 16,
+                "cpu_nb_cores_for_optimization": 12
+            },
+            "elapsed_time": 160,
+            "evals_done": 14978,
+            "optimization_progress": 0.07489,
+            "state": "paused"
+        },
+        "version": {
+            "local_api": "2025.04.04.1",
+            "studio": "5.0.2"
+        }
+    },
+    "performance": {
+        "memory_usage": {
+            "estimated_flash": 4181,
+            "estimated_flash_knowledge": 132,
+            "estimated_ram": 104
+        },
+        "performance": {
+            "precision": 0.9645,
+            "precision_confidence_interval": [
+                0.9416,
+                0.9873
+            ],
+            "score": 0.9483
+        }
+    },
+    "request_type": "library",
+    "sensor": "multiGeneric",
+    "studio_info": {
+        "local_api": {
+            "platform": "win64",
+            "version": "2025.04.04.1"
+        },
+        "studio": "5.0.2",
+        "web_api": {
+            "env": "PROD",
+            "version": "v3"
+        }
+    },
+    "user_info": {
+        "company": "Shenzhen Technology Universe",
+        "email": "sunyan1018dai@gmail.com",
+        "first_name": "\u5ca9",
+        "last_name": "\u5b59"
+    }
+}

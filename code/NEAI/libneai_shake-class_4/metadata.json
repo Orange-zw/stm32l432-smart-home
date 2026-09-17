@@ -1,0 +1,99 @@
+{
+    "accelerators": [],
+    "algorithm_type": "classifier",
+    "class_names": [
+        "shake",
+        "normal"
+    ],
+    "commit": "bb711f5",
+    "compilation_date": "2026-02-07T05:41:24.474938",
+    "compilation_flags": {
+        "float_abi": "soft",
+        "fshort_enums": true,
+        "short_wchar": true
+    },
+    "compilation_str": "{'compilation_dict':{'request_type':'library','api':{'env':'PROD','version':'v3'},'version':{'web_api':{'env':'PROD','version':'v3'},'local_api':{'version':'2025.04.04.1','platform':'win64'},'studio':'5.0.2'},'compilation_flags':{'float_abi':'soft','short_wchar':true,'fshort_enums':true,'use_knowledge':false},'mcu':'cortex-m3_stmicroelectronics_stm32f1-series','sensor':'acc','request_origin':'manual','algorithm_type':'classifier','lib_version':'v2_bb711f5','info':{'progression':{'evals_done':2645,'optimization_progress':0.013225,'elapsed_time':48,'cpu_info':{'cpu_nb_cores':16,'cpu_nb_cores_for_optimization':12},'state':'paused'},'max_ram':3000,'max_flash':5000,'optimization_global_id':'a89e14c5ab33799f27894b051ae9399f','version':{'local_api':'2025.04.04.1','studio':'5.0.2'},'creation_date':'2026-02-07T03:33:20+00:00'},'class_names':'shake,normal','results':[{'result_id':50,'combination':[0,[11,2,1,6,3,4,0,13,20,12,19,18,5,15,14,17,16,10,9,26,22,8,23,7,21,24,25],27,1,0,1,[115],8,0.407,16,4,0.861,0,3,3,2,0,0.0,0.0,1000000.0,0,0,0,0,1],'model':4,'performance':{'performance':{'score':0.9393,'precision':0.9714,'precision_confidence_interval':[0.9349,0.9918]},'memory_usage':{'estimated_ram':234,'estimated_flash':104,'estimated_flash_knowledge':null}},'learning_min_lines':null,'knowledge_dat':'eNpjYGiwP5m96KDYxFf2Do8MD3pdNHT8uXGlg8SClQcYGBocGBgcgLjBkQEFNNhDGY4QeTBwQFGiUuKJUNtgDwCa1BOc'}],'data':{'nb_cols':48,'nb_lines':[[{'file_type':'class','nb_lines':461},{'file_type':'class','nb_lines':213}]]},'only_emulators':false,'user_suffix':'shake','lock_type':100},'sign':55524,'license_key':'***'}",
+    "compile_emulators": true,
+    "compile_library": true,
+    "data": {
+        "nb_cols": 48,
+        "nb_lines": [
+            [
+                {
+                    "file_type": "class",
+                    "nb_lines": 461
+                },
+                {
+                    "file_type": "class",
+                    "nb_lines": 213
+                }
+            ]
+        ]
+    },
+    "learning_min_lines": null,
+    "lib_limited": false,
+    "library_id": "6986d0844f8c5d6e20f5fda7",
+    "library_md5sum": "aa1e23586e3b0ef68a7df85a048dd182",
+    "mcu": "cortex-m3_stmicroelectronics_stm32f1-series",
+    "mcu_cpn": "",
+    "mcu_display_name": "STM32F1 Series - STMicroelectronics",
+    "mcu_family": "STM32F1 Series",
+    "mcu_group": "prod",
+    "mcu_type": "cortex-m3",
+    "mcu_vendor": "STMicroelectronics",
+    "optimization_info": {
+        "creation_date": "2026-02-07T03:33:20+00:00",
+        "max_flash": 5000,
+        "max_ram": 3000,
+        "optimization_global_id": "a89e14c5ab33799f27894b051ae9399f",
+        "progression": {
+            "cpu_info": {
+                "cpu_nb_cores": 16,
+                "cpu_nb_cores_for_optimization": 12
+            },
+            "elapsed_time": 48,
+            "evals_done": 2645,
+            "optimization_progress": 0.013225,
+            "state": "paused"
+        },
+        "version": {
+            "local_api": "2025.04.04.1",
+            "studio": "5.0.2"
+        }
+    },
+    "performance": {
+        "memory_usage": {
+            "estimated_flash": 104,
+            "estimated_flash_knowledge": null,
+            "estimated_ram": 234
+        },
+        "performance": {
+            "precision": 0.9714,
+            "precision_confidence_interval": [
+                0.9349,
+                0.9918
+            ],
+            "score": 0.9393
+        }
+    },
+    "request_type": "library",
+    "sensor": "acc",
+    "studio_info": {
+        "local_api": {
+            "platform": "win64",
+            "version": "2025.04.04.1"
+        },
+        "studio": "5.0.2",
+        "web_api": {
+            "env": "PROD",
+            "version": "v3"
+        }
+    },
+    "toolchain_version": "arm-none-eabi-gcc (Arm GNU Toolchain 13.2.rel1 (Build arm-13.7)) 13.2.1 20231009",
+    "user_info": {
+        "company": "Shenzhen Technology Universe",
+        "email": "sunyan1018dai@gmail.com",
+        "first_name": "\u5ca9",
+        "last_name": "\u5b59"
+    }
+}

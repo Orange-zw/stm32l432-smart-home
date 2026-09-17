@@ -1,0 +1,36 @@
+      Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
+         0          0          0          0          0          0   core_cm3.o
+        54          0          0          0          0          0   delay.o
+       396          0          0         44          0          0   do.o
+         0          0          0          0          0          0   embedded_list.o
+      1246          0          0          4        256          0   esp8266.o
+       220          0          0          1          0          0   key.o
+      2858          0         57        212       2810          0   main.o
+       120          0          0          0          0          0   misc.o
+      1204          0        580         40          0          0   pwm_driver.o
+       200          0          0          0          0          0   sg_90.o
+       864          0          0          0         40          0   soft_i2c_master.o
+      1064          0          0          0       1032          0   ssd1306.o
+         0          0      17299          0          0          0   ssd1306_fonts.o
+        36          0        236          0       5120          0   startup_stm32f10x_md.o
+       228          0          0          0          0          0   stm32f10x_flash.o
+       268          0          0          0          0          0   stm32f10x_gpio.o
+        18          0          0          0          0          0   stm32f10x_it.o
+       192          0          0         20          0          0   stm32f10x_rcc.o
+       924          0          0          0          0          0   stm32f10x_tim.o
+       350          0          0          0          0          0   stm32f10x_usart.o
+       278          0          0          0       1064          0   stmflash.o
+       428          0          0          8         50          0   su_03t.o
+       248          0          0          0          0          0   system_stm32f10x.o
+       134          0          0          0          0          0   timer.o
+Object Totals
+
+Memory Map of the image
+
+	Load Region LR_IROM1 
+
+		Execution Region ER_IROM1 (Exec base: 0x08000000, Size: 0x00008B74, Max: 0x00010000, END)
+
+		Execution Region RW_IRAM1 (Exec base: 0x20000000, Size: 0x000029E0, Max: 0x00005000, END)
+
+Image component sizes
